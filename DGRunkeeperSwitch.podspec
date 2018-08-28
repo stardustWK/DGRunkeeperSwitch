@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source_files = "DGRunkeeperSwitch/**/*.swift"
 
   s.requires_arc = true
-
+  s.swift_version = '4.1'
   s.ios.deployment_target = '8.0'
   s.ios.frameworks = ['UIKit', 'Foundation']
   
