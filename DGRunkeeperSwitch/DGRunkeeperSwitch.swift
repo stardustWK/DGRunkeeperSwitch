@@ -22,11 +22,11 @@ open class DGRunkeeperSwitchRoundedLayer: CALayer {
 
 
 @IBDesignable
-open class DGRunkeeperSwitch: UIControl {
+@objc open class DGRunkeeperSwitch: UIControl {
     
     // MARK: - Public vars
     
-    open var titles: [String] {
+    @objc open var titles: [String] {
         set {
             (titleLabels + selectedTitleLabels).forEach { $0.removeFromSuperview() }
             titleLabels = newValue.map { title in
@@ -53,41 +53,41 @@ open class DGRunkeeperSwitch: UIControl {
         get { return titleLabels.map { $0.text! } }
     }
     
-    fileprivate(set) open var selectedIndex: Int = 0
+    @objc fileprivate(set) open var selectedIndex: Int = 0
     
-    open var selectedBackgroundInset: CGFloat = 2.0 {
+    @objc open var selectedBackgroundInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
     
     @IBInspectable
-    open var selectedBackgroundColor: UIColor! {
+    @objc open var selectedBackgroundColor: UIColor! {
         set { selectedBackgroundView.backgroundColor = newValue }
         get { return selectedBackgroundView.backgroundColor }
     }
     
     @IBInspectable
-    open var titleColor: UIColor! {
+    @objc open var titleColor: UIColor! {
         didSet { titleLabels.forEach { $0.textColor = titleColor } }
     }
     
     @IBInspectable
-    open var selectedTitleColor: UIColor! {
+    @objc open var selectedTitleColor: UIColor! {
         didSet { selectedTitleLabels.forEach { $0.textColor = selectedTitleColor } }
     }
     
-    open var titleFont: UIFont! {
+    @objc open var titleFont: UIFont! {
         didSet { (titleLabels + selectedTitleLabels).forEach { $0.font = titleFont } }
     }
     
     @IBInspectable
-    open var titleFontFamily: String = "HelveticaNeue"
+    @objc open var titleFontFamily: String = "HelveticaNeue"
     
     @IBInspectable
-    open var titleFontSize: CGFloat = 18.0
+    @objc open var titleFontSize: CGFloat = 18.0
     
-    open var animationDuration: TimeInterval = 0.3
-    open var animationSpringDamping: CGFloat = 0.75
-    open var animationInitialSpringVelocity: CGFloat = 0.0
+    @objc open var animationDuration: TimeInterval = 0.3
+    @objc open var animationSpringDamping: CGFloat = 0.75
+    @objc open var animationInitialSpringVelocity: CGFloat = 0.0
     
     // MARK: - Private vars
     
@@ -111,7 +111,7 @@ open class DGRunkeeperSwitch: UIControl {
     
     // MARK: - Constructors
     
-    public init(titles: [String]) {
+    @objc public init(titles: [String]) {
         super.init(frame: CGRect.zero)
         
         self.titles = titles
@@ -125,7 +125,7 @@ open class DGRunkeeperSwitch: UIControl {
         finishInit()
     }
     
-    override public init(frame: CGRect) {
+    @objc override public init(frame: CGRect) {
         super.init(frame: frame)
         
         finishInit()
@@ -169,7 +169,7 @@ open class DGRunkeeperSwitch: UIControl {
         }
     }
     
-    override open func awakeFromNib() {
+    @objc override open func awakeFromNib() {
         super.awakeFromNib()
         
         self.titleFont = UIFont(name: self.titleFontFamily, size: self.titleFontSize)
@@ -184,7 +184,7 @@ open class DGRunkeeperSwitch: UIControl {
     
     // MARK: -
     
-    override open class var layerClass : AnyClass {
+    @objc override open class var layerClass : AnyClass {
         return DGRunkeeperSwitchRoundedLayer.self
     }
     
@@ -208,7 +208,7 @@ open class DGRunkeeperSwitch: UIControl {
         }
     }
     
-    open func setSelectedIndex(_ selectedIndex: Int, animated: Bool) {
+    @objc open func setSelectedIndex(_ selectedIndex: Int, animated: Bool) {
         guard 0..<titleLabels.count ~= selectedIndex else { return }
         
         // Reset switch on half pan gestures
